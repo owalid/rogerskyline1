@@ -1,0 +1,7 @@
+[localhost]
+127.0.0.1
+[ow_server]
+owalid@192.168.42.2
+[ow_server:vars]
+ansible_sudo=yes
+ansible_sudo_user=owalid

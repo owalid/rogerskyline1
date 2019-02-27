@@ -1,0 +1,96 @@
+- hosts: localhost
+  remote_user: root
+  sudo: yes
+  tasks:
+# install basic packages
+    - name: Update packages
+      apt:
+          upgrade: yes
+          update_cache: yes
+    - name: Install base packages
+      apt: name={{ item }} state=installed
+      with_items:
+          - sudo
+          - git
+          - iptables
+          - iptables-save
+          - vim
+          - apache2
+# ssh config
+    - name: Cpy config ssh
+      copy:
+          src: ssh/sshd_config
+          dest: /etc/ssh/sshd_config
+    - name: restart ssh
+      service:
+          name: sshd
+          state: restarted
+# cron config
+    - name: Update
+      cron:
+          name: "update"
+          job: "cron/update.sh"
+    - name: Update
+      cron:
+          name: "update"
+          special_time: reboot
+          job: "cron/update.sh"
+    - name: Check change
+      cron:
+          name: "check change"
+          job: "cron/check.sh"
+    - name: restart cron
+      service:
+          name: cron
+          state: restarted
+# f2ban config
+    - name: fail2ban config (jail)
+      copy:
+          src: config/jail.d
+          dest: /etc/fail2ban/jail.d
+    - name: fail2ban config (fail2ban.d)
+      copy:
+          src: config/fail2ban.d
+          dest: /etc/fail2ban/fail2ban.d
+    - name: restart f2ban
+      service:
+          name: fail2ban
+          state: restarted
+# Copy scripts
+    - name: copy script clone
+      copy:
+          src: script/clone.sh
+          dest: /home/root/clone.sh
+
+    - name: copy script pull
+      copy:
+          src: script/pull.sh
+          dest: /home/root/pull.sh
+    - name: copy iptables scripts
+      copy:
+          src: script/iptables.sh
+          dest: /home/root/iptables.sh
+# iptables config
+    - name: script iptables
+      shell: sh /home/root/iptables.sh
+    
+    - name: save iptables
+      shell: iptables-save > /etc/iptables/rules.v4 && iptables-save > /etc/iptables/rules.v6
+
+    - name: restart network
+      service:
+          name: network
+          state: restarted
+# clone website
+    - name: script clone
+      shell: sh /home/root/clone.sh
+
+# apache config
+    - name: config apache
+      template:
+          src: templates/apache.conf
+          dest: /etc/apachache2/apache2.conf
+    - name: restart apache
+      service:
+          name: httpd
+          state: restarted

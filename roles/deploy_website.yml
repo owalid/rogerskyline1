@@ -1,0 +1,13 @@
+- hosts: ow_server
+  remote_user: owalid
+  sudo: yes
+  vars:
+      - app_path: /var/www/html/movie_search
+  tasks:
+      - name: script pull
+        shell: sh /home/owalid/pull.sh
+        register: pull
+
+      - name: build rep
+        command: yarn --cwd /var/www/html/movie_search build && yarn --cwd /var/www/html/movie_search install
+        when: pull.stdout.find('Already up-to-date.') == -1 
