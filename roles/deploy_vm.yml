@@ -5,9 +5,7 @@
   tasks:
 # install basic packages
     - name: Update packages
-      apt:
-          upgrade: yes
-          update_cache: yes
+      apt: upgrade=yes update_cache=yes
     - name: Install base packages
       apt: name={{ item }} state=installed
       with_items:
