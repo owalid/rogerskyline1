@@ -5,7 +5,7 @@
   tasks:
 # install basic packages
     - name: Update packages
-      shell: sudo apt-get clean && sudo apt-get upgrade && sudo apt-get update
+      shell: sudo apt-get clean && sudo apt-get -y upgrade && sudo apt-get -y update
     - name: Install base packages
       apt: name={{ item }} state=installed
       with_items:
