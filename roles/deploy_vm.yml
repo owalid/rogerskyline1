@@ -17,10 +17,12 @@
           - portsentry
           - git
           - vim
+    - name: Install oh-my-zsh
+      shell: sh "{{home_path}}/script/omzsh.sh"
 # ssh config
     - name: Cpy config ssh
       copy:
-          src: /home/owalid/rogerskyline1/config/sshd_config
+          src: "{{ home_path }}/config/sshd_config"
           dest: /etc/ssh/sshd_config
     - name: restart ssh
       service:
@@ -47,11 +49,11 @@
 # f2ban config
     - name: fail2ban config (jail)
       copy:
-          src: /home/owalid/rogerskyline1/config/jail.conf
+          src: "{{ home_path }}/config/jail.conf"
           dest: /etc/fail2ban/jail.conf
     - name: fail2ban config (fail2ban.d)
       copy:
-          src: /home/owalid/rogerskyline1/config/fail2ban.conf
+          src: "{{ home_path}}/config/fail2ban.conf"
           dest: /etc/fail2ban/fail2ban.conf
     - name: restart f2ban
       service:
