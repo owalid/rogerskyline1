@@ -66,6 +66,11 @@
       copy:
           src: "{{ home_path }}/script/iptables.sh"
           dest: "{{ home_path }}/iptables.sh"
+# network config
+    - name: network config
+      copy:
+          src: "{{ home_path }}/config/interfaces"
+          dest: "/etc/network/interfaces"
 # iptables config
     - name: script iptables
       shell: sh "{{ home_path }}/iptables.sh"
