@@ -19,7 +19,7 @@
           - git
           - vim
     - name: Install yarn
-      shell: sh "{{ home_path }}/yarn_npm.sh"
+      shell: sh "{{ home_path }}/script/yarn_npm.sh"
 # ssh config
     - name: Cpy config ssh
       copy:
