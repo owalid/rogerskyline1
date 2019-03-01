@@ -18,10 +18,6 @@
           - portsentry
           - git
           - vim
-    - name: Install oh-my-zsh
-      shell: sh "{{ home_path }}/script/omzsh.sh"
-    - name: Install yarn and npm
-      shell: sh "{{ home_path }}/script/yarn_npm.sh"
 # ssh config
     - name: Cpy config ssh
       copy:
