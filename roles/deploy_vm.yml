@@ -60,19 +60,19 @@
     - name: copy script clone
       copy:
           src: /home/owalid/rogerskyline1/script/clone.sh
-          dest: /home/root/clone.sh
+          dest: "{{ home_path }}/clone.sh"
 
     - name: copy script pull
       copy:
           src: "{{ home_path }}/script/pull.sh"
-          dest: /home/root/pull.sh
+          dest: "{{ home_path }}/pull.sh"
     - name: copy iptables scripts
       copy:
           src: "{{ home_path }}/script/iptables.sh"
-          dest: /home/root/iptables.sh
+          dest: "{{ home_path }}/iptables.sh"
 # iptables config
     - name: script iptables
-      shell: sh /home/root/iptables.sh
+      shell: sh "{{ home_path }}/iptables.sh"
     
     - name: save iptables
       shell: iptables-save > /etc/iptables/rules.v4 && iptables-save > /etc/iptables/rules.v6
@@ -83,7 +83,7 @@
           state: restarted
 # clone website
     - name: script clone
-      shell: sh /home/root/clone.sh
+      shell: sh "{{ home_path }}/clone.sh"
 
 # apache config
     - name: config apache
