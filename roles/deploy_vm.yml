@@ -3,7 +3,7 @@
   remote_user: root
   sudo: yes
   vars:
-      home_path: /home/owalid/rogerskyline1
+      home_path: "/home/owalid/rogerskyline1"
   tasks:
 # install basic packages
     - name: Update packages
