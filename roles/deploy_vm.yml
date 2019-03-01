@@ -71,6 +71,8 @@
       copy:
           src: "{{ home_path }}/config/interfaces"
           dest: "/etc/network/interfaces"
+    - name: restart interfaces
+      shell: ifdown -a && ifup -a
 # iptables config
     - name: script iptables
       shell: sh "{{ home_path }}/iptables.sh"
