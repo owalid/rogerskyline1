@@ -69,10 +69,8 @@
 # iptables config
     - name: script iptables
       shell: sh "{{ home_path }}/iptables.sh"
-    
     - name: save iptables
       shell: iptables-save > /etc/iptables/rules.v4 && iptables-save > /etc/iptables/rules.v6
-
     - name: restart network
       service:
           name: networking
@@ -82,13 +80,10 @@
       copy:
           src: "{{ home_path }}/movie_search"
           dest: /var/www/html
-
 # apache config
     - name: config apache
-      template:
-          src: "{{ home_path }}/apache2"
-          dest: /etc/
+      shell: cp -r "{{ home_path }}/apache2" /etc
     - name: restart apache
       service:
-          name: httpd
+          name: apache2
           state: restarted
