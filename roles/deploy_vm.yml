@@ -96,6 +96,4 @@
           name: apache2
           state: restarted
     - name: reboot
-      reboot:
-          reboot_timeout: 1
-          msg: "the VM will reboot"
+      shell: echo "the VM will reboot !!" && sleep 10 && reboot
