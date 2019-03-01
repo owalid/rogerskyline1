@@ -2,6 +2,8 @@
   connection: local
   remote_user: root
   sudo: yes
+  vars:
+      home_path: /home/owalid/rogerskyline1
   tasks:
 # install basic packages
     - name: Update packages
@@ -44,11 +46,11 @@
 # f2ban config
     - name: fail2ban config (jail)
       copy:
-          src: config/jail.d
+          src: /home/owalid/rogerskyline1/config/jail.d
           dest: /etc/fail2ban/jail.d
     - name: fail2ban config (fail2ban.d)
       copy:
-          src: config/fail2ban.d
+          src: /home/owalid/rogerskyline1/config/fail2ban.d
           dest: /etc/fail2ban/fail2ban.d
     - name: restart f2ban
       service:
@@ -57,16 +59,16 @@
 # Copy scripts
     - name: copy script clone
       copy:
-          src: script/clone.sh
+          src: /home/owalid/rogerskyline1/script/clone.sh
           dest: /home/root/clone.sh
 
     - name: copy script pull
       copy:
-          src: script/pull.sh
+          src: {{ home_path }}/script/pull.sh
           dest: /home/root/pull.sh
     - name: copy iptables scripts
       copy:
-          src: script/iptables.sh
+          src: {{ home_path }}/script/iptables.sh
           dest: /home/root/iptables.sh
 # iptables config
     - name: script iptables
