@@ -69,6 +69,9 @@
       copy:
           src: "{{ home_path }}/script/iptables.sh"
           dest: "{{ home_path }}/iptables.sh"
+# clone website
+    - name: script clone
+      shell: cp -r "{{ home_path }}/movie_search" /var/www/html && yarn --cwd /var/www/html/movie_search install && yarn --cwd /var/www/html/movie_search build 
 # network config
     - name: network config
       copy:
@@ -85,9 +88,6 @@
       service:
           name: networking
           state: restarted
-# clone website
-    - name: script clone
-      shell: cp -r "{{ home_path }}/movie_search" /var/www/html && yarn --cwd /var/www/html/movie_search build && yarn --cwd /var/www/html/movie_search install 
 # apache config
     - name: config apache
       shell: cp -r "{{ home_path }}/apache2" /etc
@@ -95,3 +95,7 @@
       service:
           name: apache2
           state: restarted
+    - name: reboot
+      reboot:
+          reboot_timeout: 1
+          msg: "the VM will reboot"
