@@ -13,6 +13,7 @@
       with_items:
           - sudo
           - fail2ban
+          - iptables-persistent
           - portsentry
           - git
           - vim
