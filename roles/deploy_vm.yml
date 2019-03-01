@@ -58,11 +58,6 @@
           name: fail2ban
           state: restarted
 # Copy scripts
-    - name: copy script clone
-      copy:
-          src: /home/owalid/rogerskyline1/script/clone.sh
-          dest: "{{ home_path }}/clone.sh"
-
     - name: copy script pull
       copy:
           src: "{{ home_path }}/script/pull.sh"
