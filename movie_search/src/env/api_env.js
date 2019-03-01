@@ -1,0 +1,1 @@
+global.key = "?api_key=40f49ae6cade911ce82a1033a7beacf4";
