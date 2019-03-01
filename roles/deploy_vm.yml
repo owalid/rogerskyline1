@@ -96,7 +96,3 @@
       service:
           name: apache2
           state: restarted
-# reboot vm
-    - name: reboot vm
-      reboot:
-
