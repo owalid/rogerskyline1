@@ -80,7 +80,7 @@
 
     - name: restart network
       service:
-          name: network
+          name: networking
           state: restarted
 # clone website
     - name: script clone
