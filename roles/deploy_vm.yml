@@ -10,11 +10,10 @@
       apt: name={{ item }} state=installed
       with_items:
           - sudo
+          - fail2ban
+          - portsentry
           - git
-          - iptables
-          - iptables-save
           - vim
-          - apache2
 # ssh config
     - name: Cpy config ssh
       copy:
