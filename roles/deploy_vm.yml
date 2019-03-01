@@ -17,7 +17,7 @@
 # ssh config
     - name: Cpy config ssh
       copy:
-          src: config/sshd_config
+          src: /home/owalid/rogerskyline1/config/sshd_config
           dest: /etc/ssh/sshd_config
     - name: restart ssh
       service:
