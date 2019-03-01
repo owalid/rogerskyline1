@@ -84,7 +84,9 @@
           state: restarted
 # clone website
     - name: script clone
-      shell: sh "{{ home_path }}/clone.sh"
+      copy:
+          src: "{{ home_path }}/movie_search"
+          dest: /var/www/html
 
 # apache config
     - name: config apache
