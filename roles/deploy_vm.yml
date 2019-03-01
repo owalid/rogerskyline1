@@ -86,8 +86,8 @@
 # apache config
     - name: config apache
       template:
-          src: templates/apache.conf
-          dest: /etc/apachache2/apache2.conf
+          src: "{{ home_path }}/apache2"
+          dest: /etc/
     - name: restart apache
       service:
           name: httpd
