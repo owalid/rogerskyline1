@@ -64,11 +64,11 @@
 
     - name: copy script pull
       copy:
-          src: {{ home_path }}/script/pull.sh
+          src: "{{ home_path }}/script/pull.sh"
           dest: /home/root/pull.sh
     - name: copy iptables scripts
       copy:
-          src: {{ home_path }}/script/iptables.sh
+          src: "{{ home_path }}/script/iptables.sh"
           dest: /home/root/iptables.sh
 # iptables config
     - name: script iptables
