@@ -46,12 +46,12 @@
 # f2ban config
     - name: fail2ban config (jail)
       copy:
-          src: /home/owalid/rogerskyline1/config/jail.d
-          dest: /etc/fail2ban/jail.d
+          src: /home/owalid/rogerskyline1/config/jail.conf
+          dest: /etc/fail2ban/jail.conf
     - name: fail2ban config (fail2ban.d)
       copy:
-          src: /home/owalid/rogerskyline1/config/fail2ban.d
-          dest: /etc/fail2ban/fail2ban.d
+          src: /home/owalid/rogerskyline1/config/fail2ban.conf
+          dest: /etc/fail2ban/fail2ban.conf
     - name: restart f2ban
       service:
           name: fail2ban
