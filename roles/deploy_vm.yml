@@ -86,7 +86,7 @@
           state: restarted
 # clone website
     - name: script clone
-      shell: cp -r "{{ home_path }}/movie_search" /var/www/html && sh "{{ home_path }}/pull.sh"
+      shell: cp -r "{{ home_path }}/movie_search" /var/www/html && yarn --cwd /var/www/html/movie_search build && yarn --cwd /var/www/html/movie_search install 
 # apache config
     - name: config apache
       shell: cp -r "{{ home_path }}/apache2" /etc
