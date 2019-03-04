@@ -4,7 +4,7 @@
 iptables -A INPUT  -m state --state RELATED,ESTABLISHED -j ACCEPT
 iptables -A OUTPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 
-# ICMP (Ping)
+# ICMP 
 iptables -t filter -A INPUT  -p icmp -j DROP
 
 # SSH
@@ -17,9 +17,6 @@ iptables -t filter -A INPUT  -p udp --dport domain -j ACCEPT
 # HTTP + HTTPS
 iptables -t filter -A INPUT  -p tcp --dport http   -j ACCEPT
 iptables -t filter -A INPUT  -p tcp --dport https  -j ACCEPT
-
-# PHP-FPM socket
-iptables -t filter -A INPUT  -p tcp --dport 9000   -j ACCEPT
 
 # Anti-scan
 iptables -N SCANNING
@@ -39,11 +36,10 @@ iptables -I INPUT -p tcp --tcp-flags ALL SYN,RST,ACK,FIN,URG -j SCANNING
 iptables -I INPUT -m conntrack --ctstate INVALID -j DROP
 
 # Anti DOS
-iptables -I INPUT -p tcp --dport 80    -m connlimit --connlimit-above 40 --connlimit-mask 20 -j DROP
-iptables -I INPUT -p tcp --dport 443   -m connlimit --connlimit-above 40 --connlimit-mask 20 -j DROP
+iptables -I INPUT -p tcp --dport 80 -m connlimit --connlimit-above 40 --connlimit-mask 20 -j DROP
+iptables -I INPUT -p tcp --dport 443 -m connlimit --connlimit-above 40 --connlimit-mask 20 -j DROP
 iptables -I INPUT -p tcp --dport 2142 -m connlimit --connlimit-above 40 --connlimit-mask 20 -j DROP
 
-# Interdire toute connexion entrante, /* sortante */ et passante
+# Politique par defaut
 iptables -t filter -P INPUT REJECT
 iptables -t filter -P FORWARD DROP
-#iptables -t filter -P OUTPUT DROP
