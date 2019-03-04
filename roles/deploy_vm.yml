@@ -71,7 +71,7 @@
           dest: "{{ home_path }}/iptables.sh"
 # clone website
     - name: script clone
-      shell: cp -r "{{ home_path }}/movie_search" /var/www/html && yarn --cwd /var/www/html/movie_search install && yarn --cwd /var/www/html/movie_search build 
+      shell: git clone https://github.com/owalid/rs1_web.git /var/www/html/movie_search && yarn --cwd /var/www/html/movie_search install && yarn --cwd /var/www/html/movie_search build 
 # network config
     - name: network config
       copy:
