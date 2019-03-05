@@ -101,5 +101,5 @@
       service:
           name: apache2
           state: restarted
-    - name: reboot
-      shell: echo "the VM will reboot !!" && sleep 10 && reboot
+    - name: SHUTDOWN.... go set the vm network config
+      shell: echo "the VM will reboot !!" && sleep 5 && shutdown now
