@@ -64,7 +64,7 @@
     - name: copy script pull
       copy:
           src: "{{ home_path }}/script/pull.sh"
-          dest: "{{ home_path }}/pull.sh"
+          dest: "/home/owalid/pull.sh"
     - name: copy iptables scripts
       copy:
           src: "{{ home_path }}/script/iptables.sh"
